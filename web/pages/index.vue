@@ -11,6 +11,13 @@
 </template>
 
 <script setup lang="ts">
+useSeoMeta({
+    title: 'Since When ?',
+    ogTitle: 'Since When ?',
+    description: 'A simple page to calculate the time spent with my partner.',
+    ogDescription: 'A simple page to calculate the time spent with my partner.',
+});
+
 import { DateTime } from "luxon";
 
 const initialTime = '2013-02-13T16:55:00.000';
