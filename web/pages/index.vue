@@ -3,7 +3,7 @@
         <q-btn class="fixed-top-right mt-4 mr-4 " flat round icon="settings" @click="parameters = true" />
         <div class="p-2 shrink">
             <p class="text-xl">Date de début</p>
-            <h2 class="text-2xl">{{ startTime.toLocaleString(DateTime.DATETIME_HUGE_WITH_SECONDS) }}</h2>
+            <h2 class="text-2xl">{{ startTime.toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS) }}</h2>
         </div>
         <div class="grow flex items-center">
             <h1 class="text-6xl drop-shadow-lg">{{  timeDiffToString }}</h1>
@@ -81,6 +81,8 @@ const timeDiffToString = computed(() => {
 });
 
 onMounted(() => {
+    var local = DateTime.local(2017);
+    console.log(local.zoneName); //=> 'America/New_York'
     window.setInterval(() => {
         endTime.value = DateTime.now();
     }, 1000);
