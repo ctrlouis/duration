@@ -6,10 +6,14 @@ export default defineNuxtConfig({
     devtools: {
         enabled: true
     },
+    modules: [
+        'nuxt-quasar-ui',
+    ],
     postcss: {
         plugins: {
             tailwindcss: {},
             autoprefixer: {},
         },
     },
+    quasar: { /* */ },
 });
