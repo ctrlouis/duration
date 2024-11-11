@@ -1,16 +1,17 @@
 <template>
-    <main class="h-screen w-screen flex flex-col items-center bg-yellow-400 text-center text-purple-800">
-        <q-btn class="fixed-top-right mt-4 mr-4 " flat round icon="settings" @click="parameters = true" />
-        <div class="p-2 shrink">
-            <p class="text-xl">Date de début</p>
-            <h2 class="text-2xl">{{ startTime.toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS) }}</h2>
-        </div>
+    
+    <div class="flex flex-col items-center text-center">
+        <!-- <q-btn class="fixed-top-right mt-4 mr-4 " flat round icon="settings" @click="parameters = true" /> -->
         <div class="grow flex items-center">
-            <h1 class="text-6xl drop-shadow-lg">{{  timeDiffToString }}</h1>
+            <div class="flex flex-col">
+                <h1 class="text-4xl font-bold md:text-6xl drop-shadow-lg">{{  timeDiffToString }}</h1>
+                <p class="mt-5 text-xl">Depuis le {{ startTime.toLocaleString(DateTime.DATETIME_SHORT_WITH_SECONDS) }}</p>
+            </div>
         </div>
 
-        <q-dialog v-model="parameters" transition-show="scale" transition-hide="scale">
+        <!-- <q-dialog v-model="parameters" transition-show="scale" transition-hide="scale">
             <q-card class="w-50">
+
                 <q-card-section class="bg-purple-800">
                     <h2 class="text-h6">Paramètres</h2>
                 </q-card-section>
@@ -27,21 +28,15 @@
                 </q-card-section>
 
                 <q-card-actions align="right" class="bg-white text-teal">
-                <q-btn flat color="purple" label="OK" v-close-popup />
+                    <q-btn flat color="purple" label="OK" v-close-popup />
                 </q-card-actions>
             </q-card>
-        </q-dialog>
-    </main>
+        </q-dialog> -->
+    </div>
+
 </template>
 
 <script setup lang="ts">
-useSeoMeta({
-    title: 'Since When ?',
-    ogTitle: 'Since When ?',
-    description: 'A simple page to calculate the time spent with my partner.',
-    ogDescription: 'A simple page to calculate the time spent with my partner.',
-});
-
 import { DateTime } from 'luxon';
 import type { DurationUnits } from 'luxon';
 
@@ -54,7 +49,7 @@ const endTime = ref<DateTime>(DateTime.fromISO(initialTime.value));
 const parameters = ref(false);
 
 const timeDiff = computed(() => {
-    return endTime.value.diff(startTime.value, durationUnits.value, { conversionAccuracy: 'casual' }).toObject();
+  return endTime.value.diff(startTime.value, durationUnits.value, { conversionAccuracy: 'casual' }).toObject();
 });
 
 const timeDiffToString = computed(() => {
